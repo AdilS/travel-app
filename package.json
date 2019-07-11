@@ -19,7 +19,8 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.4"
+    "mongoose": "^5.6.4",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
