@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../assets/css/cs-skin-elastic.css';
 import '../assets/css/style.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 class Left extends Component{
 
     render(){
@@ -12,23 +13,29 @@ class Left extends Component{
                             <li className="active">
                                 <a href="index.html"><i className="menu-icon fa fa-laptop"></i>Dashboard </a>
                             </li>
-                            <li className="menu-title">UI elements</li>
                             <li className="menu-item-has-children dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-cogs"></i>Components</a>
-                                <ul className="sub-menu children dropdown-menu">                            <li><i className="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                                    <li><i className="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                                    <li><i className="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
-        
-                                    <li><i className="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                                    <li><i className="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                                    <li><i className="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                                    <li><i className="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                                    <li><i className="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                                    <li><i className="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                                    <li><i className="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-cogs"></i>Hotel Assets</a>
+                                <ul className="sub-menu children dropdown-menu">                            
+                                <li>
+                                    <i className="fa fa-puzzle-piece"></i><a href="viewcategory">View Category</a></li>
+                                    <li><i className="fa fa-id-badge"></i><a href="viewstarrating">View Star Rating</a></li>
+                                    
                                 </ul>
                             </li>
-                            <li className="menu-item-has-children dropdown">
+                           
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+           
+        )
+    }
+}
+export default Left;
+
+/*
+
+ <li className="menu-item-has-children dropdown">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-table"></i>Tables</a>
                                 <ul className="sub-menu children dropdown-menu">
                                     <li><i className="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
@@ -80,12 +87,4 @@ class Left extends Component{
                                     <li><i className="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
                                 </ul>
                             </li>
-                        </ul>
-                    </div>
-                </nav>
-            </aside>
-           
-        )
-    }
-}
-export default Left;
+*/
