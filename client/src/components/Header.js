@@ -9,13 +9,13 @@ class Header extends Component {
       <header id="header" className="header">
         <div className="top-left">
           <div className="navbar-header">
-            <a className="navbar-brand" href="./">
+            <a className="navbar-brand" href="/">
               <img src={logo} alt="Logo" />
             </a>
-            <a className="navbar-brand hidden" href="./">
+            <a className="navbar-brand hidden" href="/">
               <img src={logo2} alt="Logo" />
             </a>
-            <a id="menuToggle" className="menutoggle">
+            <a id="menuToggle" className="menutoggle" href="/">
               <i className="fa fa-bars" />
             </a>
           </div>

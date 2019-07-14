@@ -26,7 +26,7 @@ class ViewCategory extends Component{
                           <td className="serial">1.</td>
                           <td className="avatar">
                             <div className="round-img">
-                              <a href="#">
+                              <a href="/">
                                 <img
                                   className="rounded-circle"
                                   src={JPG1}

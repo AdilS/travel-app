@@ -5,12 +5,8 @@ const Schema = mongoose.Schema;
 const CategorySchema = new Schema({
   category_name: {
     type: String,
-    required: [true, 'The Category text field is required']
-  },
-  status: {
-    type: Number,
-    required: [true, 'The Staus can`t blank']
-  },
+    required: [true, 'The todo text field is required']
+  }
 })
 
 //create model for todo

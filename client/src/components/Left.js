@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../assets/css/cs-skin-elastic.css';
 import '../assets/css/style.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 class Left extends Component{
 
     render(){
@@ -14,7 +14,7 @@ class Left extends Component{
                                 <a href="index.html"><i className="menu-icon fa fa-laptop"></i>Dashboard </a>
                             </li>
                             <li className="menu-item-has-children dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-cogs"></i>Hotel Assets</a>
+                                <a href="/" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-cogs"></i>Hotel Assets</a>
                                 <ul className="sub-menu children dropdown-menu">                            
                                 <li>
                                     <i className="fa fa-puzzle-piece"></i><a href="viewcategory">View Category</a></li>
@@ -22,7 +22,13 @@ class Left extends Component{
                                     
                                 </ul>
                             </li>
-                           
+                            <li className="menu-item-has-children dropdown">
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-table"></i>Customer</a>
+                                <ul className="sub-menu children dropdown-menu">
+                                    <li><i className="fa fa-table"></i><a href="viewuser">View User</a></li>
+                                   
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </nav>
