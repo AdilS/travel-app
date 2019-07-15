@@ -38,10 +38,12 @@ handleInputChange = (event) => {
     }
     this.setState({
       [name]: value,
-      errors},
-      ()=> {
-        console.log(errors)
-    });
+      errors}
+      //,
+    //()=> {
+       // console.log(errors)
+    //}
+    );
   }
 onSubmit=(event)=>{
     event.preventDefault();
@@ -76,9 +78,14 @@ onSubmit=(event)=>{
                             <div className="form-group">
                                 <label htmlFor="name" className=" form-control-label">Name</label>
                                 <input type="text" id="name"  onChange={this.handleInputChange} name="name" placeholder="Enter your name" className="form-control" /></div>
+                                {this.state.errors.fullName.length > 0 && 
+                                <span className='error'>{this.state.errors.fullName}</span>}
+
                             <div className="form-group">
                                 <label htmlFor="email" className=" form-control-label">Email</label>
                                 <input type="text" id="email"  onChange={this.handleInputChange}  name="email" placeholder="email" className="form-control" /></div>
+                                {this.state.errors.email.length > 0 && 
+                                <span className='error'>{this.state.errors.email}</span>}
                             <div className="form-group">
                                 <label htmlFor="password" className=" form-control-label">Password</label>
                                 <input type="text" id="password"  onChange={this.handleInputChange} name="password" placeholder="Enter Password" className="form-control" /></div>
