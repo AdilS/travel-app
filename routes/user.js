@@ -45,6 +45,7 @@ router.post('/signup', (req, res, next) => {
   
 });
 function checkEmail(reg,res,next){
-
+  var email= req.body.email;
+  const checkEmail=user.findOne({email:email});
 }
 module.exports = router;
