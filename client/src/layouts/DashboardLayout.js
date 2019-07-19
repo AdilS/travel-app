@@ -6,7 +6,7 @@ import ViewCategory from "../components/ViewCategory";
 import ViewStarRating from "../components/ViewStarRating";
 import UserComponent from "../components/UserComponent";
 import LoginComponent from "../components/LoginComponent";
-import SignupComponent from "../components/SignupComponent";
+import SignupComponent from "../users/SignupComponent";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 class DashboardLayout extends React.Component {
   render() {
