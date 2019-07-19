@@ -1,7 +1,9 @@
 const Category=require('../models/hmscategory');
 const UserModel = require('../models/user');
 const Todo = require('../models/todo');
-
+// Load input validation
+const validateRegisterInput = require("../validation/login");
+const validateLoginInput = require("../validation/register");
 
 var express = require("express");
 var router = express.Router();
@@ -48,4 +50,48 @@ function checkEmail(reg,res,next){
   var email= req.body.email;
   const checkEmail=user.findOne({email:email});
 }
+
+router.post("/login", (req, res) => {
+  // Form validationconst { errors, isValid } = validateLoginInput(req.body);// Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  const email = req.body.email;
+  const password = req.body.password;// Find user by email
+  User.findOne({ email }).then(user => {
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+    }// Check password
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        // User matched
+        // Create JWT Payload
+        const payload = {
+          id: user.id,
+          name: user.name
+        };// Sign token
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          {
+            expiresIn: 31556926 // 1 year in seconds
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token 
+            });
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+});
 module.exports = router;
+
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import JPG1 from "../assets/images/avatar/1.jpg";
 import '../assets/css/common.css';
+import {create} from './clientapi.user.js';
 class SignupComponent extends Component {
     constructor(props){
         super(props);
@@ -46,9 +47,20 @@ handleInputChange = (event) => {
     );
   }
 onSubmit=(event)=>{
-    //alert(event);
     event.preventDefault();
-    fetch('/user/signup', {
+    const url='/user/signup';
+    var postData=this.state;
+    
+    create(url,postData).then((data) => {
+        // alert(data.error);
+         if (data.error!='' && data.error!='undefined') {
+           this.setState({error: data.error})
+         } else {
+           alert('Success');
+           this.setState({error: '', open: true})
+         }
+       })
+  /*  fetch('/user/signup', {
         method: 'POST',
         body: JSON.stringify(this.state),
         headers: {
@@ -65,8 +77,8 @@ onSubmit=(event)=>{
       })
       .catch(err => {
         console.error(err);
-        //alert('Error logging in please try again');
-      });
+        alert('Error logging in please try again');
+      });*/
 }
     render() {
         return (
