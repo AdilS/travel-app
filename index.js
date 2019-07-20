@@ -1,15 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes/api');
+const cors = require('cors');
+//const routes = require('./routes/api');
 const userRoute = require('./server/routes/user.route');
 const path = require('path');
 
 const passport = require("passport");
 //const users = require("./routes/api/users");
 const app = express();
-var cors = require("cors");
 const port = process.env.PORT || 5000;
+app.use(cors());
+app.options('*', cors());
 require("./config/passport")(passport);// Routes
 require('dotenv').config();
 //connect to the database
@@ -28,8 +30,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api', routes);
-app.use('/user', userRoute);
+//app.use('/api', routes);
+app.use('/api', userRoute);
 app.use('/assets', express.static(__dirname + '/assets'));
 app.use(cors());
 app.use((err, req, res, next) => {

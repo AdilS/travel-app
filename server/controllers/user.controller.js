@@ -1,5 +1,5 @@
-import User from '../models/user.model';
-import errorHandler from './../helpers/dbErrorHandler';
+var User = require('../models/user.model');
+var errorHandler = require('./../helpers/dbErrorHandler');
 const list = (req, res) => {
     User.find((err, users) => {
         if (err) {
@@ -13,7 +13,8 @@ const list = (req, res) => {
 }
 
 const create = (req, res, next) => {
-    //alert('dsa');
+    // console.log(req.body.name);
+    // return false;
     const user = new User(req.body)
     user.save((err, result) => {
       if (err) {
@@ -27,6 +28,4 @@ const create = (req, res, next) => {
     })
   }
 
-export default {
-    create,list
-}
+  module.exports = {create,list};
