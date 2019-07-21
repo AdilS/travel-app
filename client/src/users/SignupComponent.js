@@ -11,9 +11,14 @@ class SignupComponent extends Component {
       confirmpassword: "",
       email: "",
       open: false,
-      error: "",
-      success : "",
-      passworderror:""
+      error: {
+        nameerr: "",
+        emailerr: "",
+        passworderr: "",
+        commonerr: ""
+      },
+      success: "",
+      passworderror: ""
     };
   }
 
@@ -63,16 +68,22 @@ class SignupComponent extends Component {
       email: this.state.email || undefined,
       password: this.state.password || undefined
     };
-    if(this.state.password != this.state.cpassword){
-        this.setState({ passworderror: "Confirm password is not same" });
-        return false;
+
+    if (this.state.password != this.state.cpassword) {
+
+      this.setState({ passworderror: "Confirm password is not same" });
+      return false;
+    } else {
+      this.setState({ passworderror: "" });
     }
     create(user).then(data => {
+      const errVar = this.state.error;
       if (data.error) {
-        this.setState({ error: data.error });
+        errVar.commonerr = data.error;
+        this.setState({ error: errVar });
       } else {
-         
-        this.setState({ error: "", success: data.message  });
+
+        this.setState({ error: "", success: data.message });
       }
     });
 
@@ -110,8 +121,9 @@ class SignupComponent extends Component {
           <div className="col-lg-6">
             <div className="card">
               <div className="card-header">
-                <strong>SignUp{this.state.success}</strong>
-                <small> Form</small>
+                <strong>SignUp Form</strong>
+                <small> </small>
+                <span>{this.state.success}{this.state.error.commonerr}</span>
               </div>
               <div className="card-body card-block">
                 <div className="form-group">
@@ -124,7 +136,7 @@ class SignupComponent extends Component {
                     onChange={this.handleInputChange}
                     name="name"
                     placeholder="Enter your name"
-                    className="form-control"
+                   
                   />
                 </div>
                 {/* {this.state.errors.fullName.length > 0 && 
@@ -140,7 +152,7 @@ class SignupComponent extends Component {
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="email"
-                    className="form-control"
+                    
                   />
                 </div>
                 {/* {this.state.errors.email.length > 0 && 
@@ -150,34 +162,33 @@ class SignupComponent extends Component {
                     Password
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     id="password"
                     onChange={this.handleInputChange}
                     name="password"
                     placeholder="Enter Password"
-                    className="form-control"
+                    
                   />
                 </div>
-                <div className="row form-group">
-                  <div className="col-8">
+                
+                  
                     <div className="form-group">
                       <label
                         htmlFor="cpassword"
-                        className=" form-control-label"
+                        
                       >
                         Confirm Password{this.state.passworderror}
                       </label>
                       <input
-                        type="text"
+                        type="password"
                         id="cpassword"
                         onChange={this.handleInputChange}
                         name="cpassword"
                         placeholder="Enter Password same as password"
-                        className="form-control"
                       />
                     </div>
-                  </div>
-                </div>
+                 
+                
                 <button type="submit" className="btn btn-primary btn-sm">
                   <i className="fa fa-dot-circle-o" /> Submit
                 </button>
