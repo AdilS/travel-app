@@ -72,6 +72,6 @@ UserSchema.methods = {
   }
 }
 const User = mongoose.model('users', UserSchema);
-const userfunction=UserSchema.methods;
+//const userfunction=UserSchema.methods;
 // const userfunction=UserSchema.methods;
-module.exports= {User,userfunction};
+module.exports= User;

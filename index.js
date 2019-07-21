@@ -1,5 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
+// import bodyParser from 'body-parser'
+//import cookieParser from 'cookie-parser'
+//import compress from 'compression'
+//import helmet from 'helmet'
+
 const mongoose = require('mongoose');
 const cors = require('cors');
 //const routes = require('./routes/api');
@@ -19,7 +25,7 @@ require('dotenv').config();
 mongoose.connect('mongodb://localhost:27017/pms', { useNewUrlParser: true })
   .then(() => console.log(`Database connected successfully`))
   .catch(err => console.log(err));
-
+ 
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
 
@@ -29,7 +35,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
+// parse body params and attache them to req.body
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(cookieParser())
+// app.use(compress())
+// secure apps by setting various HTTP headers
+// app.use(helmet())
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors())
 
 //app.use('/api', routes);
 app.use('/api', userRoute);
