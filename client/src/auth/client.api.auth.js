@@ -17,9 +17,10 @@ const signin = (user) => {
   }
   
   const signout = () => {
-    return fetch('/signout/', {
+    return fetch('http://localhost:5000/auth/signout', {
       method: 'GET',
     }).then(response => {
+      //alert(response.json());
         return response.json()
     }).catch((err) => console.log(err))
   }

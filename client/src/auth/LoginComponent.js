@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {signin} from './client.api.auth.js';
 import auth from './auth-helper';
-
+import {Redirect} from 'react-router-dom';
 class LoginComponent extends Component {
 
     constructor(props) {
@@ -13,7 +13,7 @@ class LoginComponent extends Component {
                 emailErr: "",
                 passwordErr: ""
             },
-            loginError: '',
+            commonerr: '',
             redirectToReferrer: false
 
         }
@@ -62,11 +62,13 @@ class LoginComponent extends Component {
               }
           
               signin(user).then((data) => {
-                  alert(JSON.stringify(data));
+                 // alert(JSON.stringify(data));
                 if (data.error) {
-                  this.setState({loginError: data.error})
-                } else { alert('Success');
-                  auth.authenticate(data, () => {
+                  this.setState({commonerr: data.error})
+                } else {
+                    this.setState({commonerr: null})
+                   
+                  auth.authenticate(data, () => { alert('Success');
                     this.setState({redirectToReferrer: true})
                   })
                 }
@@ -74,13 +76,16 @@ class LoginComponent extends Component {
         }
     }
     render() {
+        if(this.state.redirectToReferrer){
+           return <Redirect to= "/user/editprofile" />
+        }
         return (<React.Fragment>
             <form action="" method="post" onSubmit={this.onSubmit}>
                 <div className="col-lg-6">
 
                     <div className="card-header">
                         <strong>Login</strong>
-                        <span>{this.state.success}{this.state.error.commonerr}</span>
+                        <span>{this.state.success}{this.state.commonerr}</span>
                     </div>
 
                     {/* {this.state.errors.fullName.length > 0 && 

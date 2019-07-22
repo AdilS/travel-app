@@ -2,13 +2,24 @@ import React, {Component} from 'react';
 import '../assets/css/cs-skin-elastic.css';
 import '../assets/css/style.css';
 import JPG1 from "../assets/images/avatar/1.jpg";
+import {Link} from 'react-router-dom';
 
+const styles = {
+    float: 'right',
+    marginRight: '20px'
+  }
 class ViewCategory extends Component{
-
+ 
     render(){
         return (
+          <React.Fragment>
+            
             <div className="card-body">
+             
                   <div className="table-stats order-table ov-h">
+                  <span style={styles}>
+            <Link to='addcategory' class="btn btn-primary btn-sm" act>Add Category</Link>
+            </span>
                     <table className="table ">
                       <thead>
                         <tr>
@@ -57,7 +68,7 @@ class ViewCategory extends Component{
                     </table>
                   </div>
                 </div>
-           
+           </React.Fragment>
         )
     }
 }

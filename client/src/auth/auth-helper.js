@@ -18,9 +18,11 @@ const auth = {
   signout(cb) {
     if (typeof window !== "undefined")
       sessionStorage.removeItem('jwt')
-    cb()
+   // cb()
     //optional
+    
     signout().then((data) => {
+      alert(data.message);
       document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
     })
   },
