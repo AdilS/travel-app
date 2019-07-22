@@ -11,6 +11,7 @@ const cors = require('cors');
 //const routes = require('./routes/api');
 const userRoute = require('./server/routes/user.route');
 const authRoute = require('./server/routes/auth.routes');
+const adminRoute = require('./server/routes/admin.route');
 const path = require('path');
 
 const passport = require("passport");
@@ -48,6 +49,7 @@ app.use(cors())
 //app.use('/api', routes);
 app.use('/api', userRoute);
 app.use('/auth', authRoute);
+app.use('/admin', adminRoute);
 app.use('/assets', express.static(__dirname + '/assets'));
 app.use(cors());
 app.use((err, req, res, next) => {
