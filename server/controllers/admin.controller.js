@@ -49,13 +49,14 @@ const checkCategory =  (req, res) => {
   });
   }
   const getcategorybyId = (req, res) => {
-    CategoryModel.find({_id: req.category._id}, (err, shops) => {
+   // console.log(req.category)
+    CategoryModel.findById( req.category._id, (err, category) => {
       if (err) {
         return res.status(400).json({
           error: errorHandler.getErrorMessage(err)
         })
       }
-      res.json(shops)
+     return res.json(category)
     })
   }
 

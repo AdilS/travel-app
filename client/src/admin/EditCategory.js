@@ -25,7 +25,7 @@ class EditCategory extends Component {
     }
    const catId= this.props.match.params.catId;
    //this.setState()
-   alert(catId);
+   ///alert(catId);
   }
 
   handleInput = (event) => {
@@ -61,12 +61,12 @@ class EditCategory extends Component {
     }
   }
   loadCategory = () => {
-    alert(this.catId);
-    listcategorybyid({catId: this.catId})
+    //alert();
+    listcategorybyid({catId: this.props.match.params.catId})
     .then((data) => {
       if (data.error) {
         console.log(data.error)
-      } else { 
+      } else {
         this.setState({category: data})
       }
     })
@@ -131,6 +131,7 @@ class EditCategory extends Component {
                             name="category"
                             placeholder="Enter category..."
                             className="form-control"
+                            value={this.state.category.categoryname}
                             onChange={this.handleInput}
                           />
 
