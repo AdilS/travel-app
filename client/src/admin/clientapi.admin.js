@@ -20,7 +20,24 @@ const checkcategory = () => {
       return response.json()
     }).catch((err) => console.log(err))
   }
+
+  const listcategory = () => {
+    return fetch('http://localhost:5000/admin/getcategory', {
+      method: 'GET',
+    }).then(response => {
+      return response.json()
+    }).catch((err) => console.log(err))
+  }
+  const listcategorybyid = (params) => {
+    return fetch('http://localhost:5000/admin/getcategorybyId/'+params.catId, {
+      method: 'GET',
+    }).then(response => {
+      return response.json()
+    }).catch((err) => console.log(err))
+  }
+
   export {
     checkcategory,
-    create
+    create,
+    listcategory
   }

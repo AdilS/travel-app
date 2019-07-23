@@ -17,7 +17,7 @@ class Left extends Component{
                                 <a href="/" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-cogs"></i>Hotel Assets</a>
                                 <ul className="sub-menu children dropdown-menu">                            
                                 <li>
-                                    <i className="fa fa-puzzle-piece"></i><a href="viewcategory">View Category</a></li>
+                                    <i className="fa fa-puzzle-piece"></i><a href="/viewcategory">View Category</a></li>
                                     <li><i className="fa fa-id-badge"></i><a href="viewstarrating">View Star Rating</a></li>
                                     
                                 </ul>

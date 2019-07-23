@@ -13,7 +13,7 @@ const divStyle = {
   display: "inline-block",
   margin: "0 auto"
 };
-class AddCategory extends Component {
+class EditCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +23,7 @@ class AddCategory extends Component {
       respMsg: '',
       redirectToSignin: false
     }
+   const catId= this.props.match.params.catId;
   }
 
   handleInput = (event) => {
@@ -57,9 +58,21 @@ class AddCategory extends Component {
       })
     }
   }
-
+  loadCategory = () => {
+    listcategorybyid({catId: catId})
+    .then((data) => {
+      if (data.error) {
+        console.log(data.error)
+      } else { 
+        this.setState({category: data})
+      }
+    })
+  }
+  componentDidMount = () => {
+    this.loadCategory()
+  }
   render() {
-
+//alert((this.match.params.catId));
     const jwt = auth.isAuthenticated();
     if (jwt.token == null || typeof jwt.token == undefined) {
       this.setState({ redirectToSignin: true });
@@ -80,7 +93,7 @@ class AddCategory extends Component {
                   <div class="page-title">
                     <ol class="breadcrumb text-right">
                       <li class="active"><span style={styles}>
-            <Link to='viewcategory' class="btn btn-primary btn-sm" act>View Category</Link>
+            <Link to='/viewcategory' class="btn btn-primary btn-sm" act>View Category</Link>
             </span></li>
                     </ol>
 
@@ -99,7 +112,7 @@ class AddCategory extends Component {
                 <div className="card">
                   {this.state.respMsg.length > 0 &&
                     <span className="alert alert-danger">{this.state.respMsg}</span>}
-                  <div class="card-header"><small> <strong>Add Category</strong></small></div>
+                  <div class="card-header"><small> <strong>Edit Category</strong></small></div>
                   <div className="card-body card-block">
                     <form action="#" method="post" className="form-horizontal">
                       <div className="row form-group">
@@ -127,7 +140,7 @@ class AddCategory extends Component {
                   </div>
                   <div>
                     <button type="submit" className="btn btn-primary btn-sm" onClick={this.handleSubmit}>
-                      <i className="fa fa-dot-circle-o" /> Submit
+                      <i className="fa fa-dot-circle-o" /> Update
             </button>
                   </div>
                 </div>
@@ -139,4 +152,4 @@ class AddCategory extends Component {
     );
   }
 }
-export default AddCategory;
+export default EditCategory;

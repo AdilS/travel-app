@@ -3,6 +3,7 @@ import Left from "../components/Left";
 import Header from "../components/Header";
 import AddCategory from "../admin/AddCategory";
 import ViewCategory from "../admin/ViewCategory";
+import EditCategory from "../admin/EditCategory";
 import ViewStarRating from "../components/ViewStarRating";
 import UserComponent from "../components/UserComponent";
 import LoginComponent from "../auth/LoginComponent";
@@ -22,6 +23,7 @@ class DashboardLayout extends React.Component {
               <Switch>
               <Route path='/addcategory' component={AddCategory} />
               <Route path='/viewcategory' component={ViewCategory} />
+              <Route path='/editcategory/:catId' component={EditCategory} />
               <Route path='/Viewstarrating' component={ViewStarRating} />
               <Route path='/viewuser' component={UserComponent} />
               <Route path='/login' component={LoginComponent} />
