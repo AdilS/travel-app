@@ -29,15 +29,18 @@ const checkcategory = () => {
     }).catch((err) => console.log(err))
   }
   const listcategorybyid = (params) => {
+    alert(params.catId);
     return fetch('http://localhost:5000/admin/getcategorybyId/'+params.catId, {
       method: 'GET',
     }).then(response => {
-      return response.json()
+      alert(JSON.stringify(response.json()));
+     // return response.json()
     }).catch((err) => console.log(err))
   }
 
   export {
     checkcategory,
     create,
-    listcategory
+    listcategory,
+    listcategorybyid
   }

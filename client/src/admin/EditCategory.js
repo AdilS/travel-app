@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/cs-skin-elastic.css";
 import "../assets/css/style.css";
-import { create } from './clientapi.admin.js';
+import { create, listcategorybyid} from './clientapi.admin.js';
 import auth from "./../auth/auth-helper";
 import { Redirect } from "react-router-dom";
 import {Link} from 'react-router-dom';
@@ -24,6 +24,8 @@ class EditCategory extends Component {
       redirectToSignin: false
     }
    const catId= this.props.match.params.catId;
+   //this.setState()
+   alert(catId);
   }
 
   handleInput = (event) => {
@@ -59,7 +61,8 @@ class EditCategory extends Component {
     }
   }
   loadCategory = () => {
-    listcategorybyid({catId: catId})
+    alert(this.catId);
+    listcategorybyid({catId: this.catId})
     .then((data) => {
       if (data.error) {
         console.log(data.error)

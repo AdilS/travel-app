@@ -49,9 +49,7 @@ const checkCategory =  (req, res) => {
   });
   }
   const getcategorybyId = (req, res) => {
-    console.log(req.query);
-    console.log('+++');
-    CategoryModel.find({_id: '5d36a1bb8b527f5cd3afeec2'}, (err, shops) => {
+    CategoryModel.find({_id: req.category._id}, (err, shops) => {
       if (err) {
         return res.status(400).json({
           error: errorHandler.getErrorMessage(err)
