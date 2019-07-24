@@ -9,6 +9,8 @@ router.route('/checkcategory').get(adminCtrl.checkCategory);
 router.route('/addcategory').post(adminCtrl.create);
 router.route('/getcategory').get(adminCtrl.getcategory);
 router.route('/getcategorybyId/:catId').get(adminCtrl.getcategorybyId);
+router.route('/updatecategorybyid/:catId').put(adminCtrl.updatecategorybyId)
+
 router.param('catId', adminCtrl.catById)
 
 //router.param('shopId', shopCtrl.shopByID)

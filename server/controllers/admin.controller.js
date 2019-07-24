@@ -70,4 +70,19 @@ const checkCategory =  (req, res) => {
       next()
     })
   }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById};
+
+  const updatecategorybyId =(req, res)=>{
+    CategoryModel.updateOne({'_id':req.category._id},
+    {'$set': { 'categoryname': req.body.categoryname }},
+    (err, category) => {
+      if (err) {
+        return res.status(400).send({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+      return res.json(category)
+      //req.body.order.payment_id = customer.id
+    //  next()
+    })
+  }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId};

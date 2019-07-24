@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import {signin} from './client.api.auth.js';
 import auth from './auth-helper';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Router} from 'react-router-dom';
+import { browserHistory } from 'react-router';
+import { createBrowserHistory } from 'history'
 class LoginComponent extends Component {
 
     constructor(props) {
@@ -67,18 +69,17 @@ class LoginComponent extends Component {
                   this.setState({commonerr: data.error})
                 } else {
                     this.setState({commonerr: null})
-                   
-                  auth.authenticate(data, () => { alert('Success');
+                    
+                  auth.authenticate(data, () => {
                     this.setState({redirectToReferrer: true})
+                    createBrowserHistory.push('/viewcategory')
                   })
                 }
               })
         }
     }
     render() {
-        if(this.state.redirectToReferrer){
-           return <Redirect to= "/user/editprofile" />
-        }
+        
         return (<React.Fragment>
             <form action="" method="post" onSubmit={this.onSubmit}>
                 <div className="col-lg-6">

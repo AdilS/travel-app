@@ -38,10 +38,25 @@ const checkcategory = () => {
       return response.json()
     }).catch((err) => console.log(err))
   }
-
+const updatecategorybyid = (categoryData,params) =>{
+  //alert(JSON.stringify(categoryData));
+  return fetch('http://localhost:5000/admin/updatecategorybyid/' + params.catId , {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(categoryData)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
   export {
     checkcategory,
     create,
     listcategory,
-    listcategorybyid
+    listcategorybyid,
+    updatecategorybyid
   }

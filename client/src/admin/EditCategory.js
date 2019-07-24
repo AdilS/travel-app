@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/cs-skin-elastic.css";
 import "../assets/css/style.css";
-import { create, listcategorybyid} from './clientapi.admin.js';
+import { create, listcategorybyid,updatecategorybyid} from './clientapi.admin.js';
 import auth from "./../auth/auth-helper";
 import { Redirect } from "react-router-dom";
 import {Link} from 'react-router-dom';
@@ -21,7 +21,8 @@ class EditCategory extends Component {
       error: '',
       success: "",
       respMsg: '',
-      redirectToSignin: false
+      redirectToSignin: false,
+      dbcategory : ''
     }
    const catId= this.props.match.params.catId;
    //this.setState()
@@ -31,7 +32,7 @@ class EditCategory extends Component {
   handleInput = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      category: value
     });
   }
   handleSubmit = () => {
@@ -51,11 +52,11 @@ class EditCategory extends Component {
       const category = {
         categoryname: this.state.category
       }
-      create(category).then(data => {
+      updatecategorybyid(category,{catId: this.props.match.params.catId}).then(data => {
         if (data.error) {
           this.setState({ 'respMsg': "Server Error" });
         } else {
-          this.setState({ 'respMsg': "Saved Successfully" });
+          this.setState({ 'respMsg': "Updated Successfully" });
         }
       })
     }
