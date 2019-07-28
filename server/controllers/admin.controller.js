@@ -1,4 +1,5 @@
 const CategoryModel = require('../models/category.model');
+const AmenitiesModel = require('../models/amenities.model');
 var errorHandler = require('./../helpers/dbErrorHandler');
 
 const checkCategory =  (req, res) => {
@@ -85,4 +86,31 @@ const checkCategory =  (req, res) => {
     //  next()
     })
   }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId};
+
+  const getamenities = (req, res, next) => {
+    AmenitiesModel.find((err, amenities) => {
+      if (err) {
+          return res.status(400).json({
+              error: errorHandler.getErrorMessage(err)
+          })
+      }
+      res.json(amenities);
+  });
+  }
+
+  const addamenity = (req, res, next) => {
+     console.log(req.body.name);
+    // return false;
+    const amenity = new AmenitiesModel(req.body)
+    amenity.save((err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+      res.status(200).json({
+        message: "Amenity Created Successfully!"
+      })
+    })
+  }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity};

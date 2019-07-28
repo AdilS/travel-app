@@ -2,8 +2,10 @@ import React, { Component } from "react";
 //import logo from './logo.svg';
 import './App.css';
 import DashboardLayout from '../src/layouts/DashboardLayout';
+import AuthLayout from '../src/layouts/AuthLayout';
 import auth from "./auth/auth-helper";
 import LoginComponent from './auth/LoginComponent';
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -26,7 +28,7 @@ class App extends Component {
                     this.state.redirectToLogin == false ? (
                         <DashboardLayout />
                     ):(
-                        <LoginComponent />
+                        <AuthLayout />
                     )
                 }
       </div>
