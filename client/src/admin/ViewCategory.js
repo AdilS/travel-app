@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/cs-skin-elastic.css";
 import "../assets/css/style.css";
-import JPG1 from "../assets/images/avatar/1.jpg";
+//import JPG1 from "../assets/images/avatar/1.jpg";
 import { Link } from "react-router-dom";
 import { listcategory } from './clientapi.admin.js';
 import auth from "./../auth/auth-helper";
@@ -43,7 +43,7 @@ class ViewCategory extends Component {
     }
     const redirectToSignin = this.state.redirectToSignin;
 
-    if (redirectToSignin == true) {
+    if (redirectToSignin === true) {
       return <Redirect to="/login" />;
     }
     return (

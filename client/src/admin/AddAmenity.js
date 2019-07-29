@@ -9,10 +9,6 @@ const styles = {
   float: "center",
   marginRight: "20px"
 };
-const divStyle = {
-  display: "inline-block",
-  margin: "0 auto"
-};
 class AddAmenity extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +38,7 @@ class AddAmenity extends Component {
     } else {
       this.setState({ error: '' });
     }
-    if (resFlag == false) {
+    if (resFlag === false) {
       return false
     } else {
       const amenity = {
@@ -66,7 +62,7 @@ class AddAmenity extends Component {
     }
     const redirectToSignin = this.state.redirectToSignin;
 
-    if (redirectToSignin == true) {
+    if (redirectToSignin === true) {
       return <Redirect to="/login" />;
     }
     return (

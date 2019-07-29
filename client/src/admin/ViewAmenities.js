@@ -37,7 +37,7 @@ class ViewAmenities extends Component {
     this.loadAmenities()
   }
   handleInput = (event)=>{
-    const { name, value } = event.target;
+    const {  value } = event.target;
     this.setState({
       searchParam: value
     });
@@ -45,18 +45,17 @@ class ViewAmenities extends Component {
   handleSearch = () =>{
     const searchParam = this.state.searchParam;
     var errFlag=false;
-    if(searchParam==''){
+    if(searchParam===''){
       this.setState ({inputError : 'Search field in blank'});
       errFlag = true;
-    } else {
-      filterAmenities(searchParam).then(data => {
+    } else if(errFlag===false) {
+      filterAmenities({'searchParam' : searchParam}).then(data => {
         if (data.error) {
           this.setState({ 'respMsg': JSON.stringify(data.error) });
         } else {
           this.setState({amenities: data});
         }
       })
-
     }
 
   }
@@ -67,7 +66,7 @@ class ViewAmenities extends Component {
     }
     const redirectToSignin = this.state.redirectToSignin;
 
-    if (redirectToSignin == true) {
+    if (redirectToSignin === true) {
       return <Redirect to="/login" />;
     }
     return (

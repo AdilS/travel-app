@@ -12,6 +12,7 @@ router.route('/getcategorybyId/:catId').get(adminCtrl.getcategorybyId);
 router.route('/updatecategorybyid/:catId').put(adminCtrl.updatecategorybyId)
 
 router.route('/getamenities').get(adminCtrl.getamenities);
+router.route('/filteramenities').post(adminCtrl.getamenitiesbyname);
 router.route('/addamenity').post(adminCtrl.addamenity);
 
 router.param('catId', adminCtrl.catById)

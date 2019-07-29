@@ -76,9 +76,9 @@ const createamenity = (amenity) => {
       return response.json()
     }).catch((err) => console.log(err))
 }
-const filterAmenities = (params) => {
+const filterAmenities = (params) => { 
   return fetch('http://localhost:5000/admin/filteramenities', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import React from "react";
 import LoginComponent from "../auth/LoginComponent";
-import SignupComponent from "../users/SignupComponent";
+//import SignupComponent from "../users/SignupComponent";
 import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
 //import PrivateRoute from 'react-private-route';
 class AuthLayout extends React.Component {

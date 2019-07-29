@@ -4,7 +4,7 @@ import './App.css';
 import DashboardLayout from '../src/layouts/DashboardLayout';
 import AuthLayout from '../src/layouts/AuthLayout';
 import auth from "./auth/auth-helper";
-import LoginComponent from './auth/LoginComponent';
+//import LoginComponent from './auth/LoginComponent';
 
 class App extends Component {
   constructor(props){
@@ -25,7 +25,7 @@ class App extends Component {
     <div className="App">
         
         {  
-                    this.state.redirectToLogin == false ? (
+                    this.state.redirectToLogin === false ? (
                         <DashboardLayout />
                     ):(
                         <AuthLayout />

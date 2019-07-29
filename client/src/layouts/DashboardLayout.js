@@ -13,7 +13,7 @@ import LoginComponent from "../auth/LoginComponent";
 import SignupComponent from "../users/SignupComponent";
 import EditProfileComponent from "../users/EditProfileComponent";
 import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
-import PrivateRoute from 'react-private-route';
+//import PrivateRoute from 'react-private-route';
 class DashboardLayout extends React.Component {
   render() {
     return (

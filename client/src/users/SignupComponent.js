@@ -69,7 +69,7 @@ class SignupComponent extends Component {
       password: this.state.password || undefined
     };
 
-    if (this.state.password != this.state.cpassword) {
+    if (this.state.password !== this.state.cpassword) {
 
       this.setState({ passworderror: "Confirm password is not same" });
       return false;

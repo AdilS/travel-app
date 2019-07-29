@@ -98,7 +98,7 @@ const checkCategory =  (req, res) => {
   });
   }
 
-  const addamenity = (req, res, next) => {
+  const addamenity = (req, res, next) => { 
      console.log(req.body.name);
     // return false;
     const amenity = new AmenitiesModel(req.body)
@@ -113,4 +113,16 @@ const checkCategory =  (req, res) => {
       })
     })
   }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity};
+
+  const getamenitiesbyname = (req, res) => {
+     
+    AmenitiesModel.find( {'amenityname' : new RegExp(req.body.searchParam, 'i') }, (err, amenities) => {
+       if (err) {
+         return res.status(400).json({
+           error: errorHandler.getErrorMessage(err)
+         })
+       }
+      return res.json(amenities)
+     })
+   }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname};

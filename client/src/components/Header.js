@@ -8,9 +8,9 @@ import JPG1 from "../assets/images/avatar/1.jpg";
 import JPG2 from "../assets/images/avatar/2.jpg";
 import JPG3 from "../assets/images/avatar/3.jpg";
 import JPG4 from "../assets/images/avatar/4.jpg";
-import JPG5 from "../assets/images/avatar/5.jpg";
+//import JPG5 from "../assets/images/avatar/5.jpg";
 import auth from "./../auth/auth-helper";
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,7 @@ class Header extends Component {
             <a className="navbar-brand hidden" href="./">
               <img src={logo2} alt="Logo" />
             </a>
-            <a id="menuToggle" className="menutoggle">
+            <a id="menuToggle" className="menutoggle" href="./">
               <i className="fa fa-bars" />
             </a>
           </div>
@@ -73,15 +73,15 @@ class Header extends Component {
                 </button>
                 <div className="dropdown-menu" aria-labelledby="notification">
                   <p className="red">You have 3 Notification</p>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <i className="fa fa-check" />
                     <p>Server #1 overloaded.</p>
                   </a>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <i className="fa fa-info" />
                     <p>Server #2 overloaded.</p>
                   </a>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <i className="fa fa-warning" />
                     <p>Server #3 overloaded.</p>
                   </a>
@@ -102,7 +102,7 @@ class Header extends Component {
                 </button>
                 <div className="dropdown-menu" aria-labelledby="message">
                   <p className="red">You have 4 Mails</p>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <span className="photo media-left">
                       <img alt="avatar" src={JPG1} />
                     </span>
@@ -112,7 +112,7 @@ class Header extends Component {
                       <p>Hello, this is an example msg</p>
                     </div>
                   </a>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <span className="photo media-left">
                       <img alt="avatar" src={JPG2} />
                     </span>
@@ -122,7 +122,7 @@ class Header extends Component {
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                     </div>
                   </a>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <span className="photo media-left">
                       <img alt="avatar" src={JPG3} />
                     </span>
@@ -132,7 +132,7 @@ class Header extends Component {
                       <p>Hello, this is an example msg</p>
                     </div>
                   </a>
-                  <a className="dropdown-item media" href="#">
+                  <a className="dropdown-item media" href="./">
                     <span className="photo media-left">
                       <img alt="avatar" src={JPG4} />
                     </span>
@@ -148,7 +148,7 @@ class Header extends Component {
 
             <div className="user-area dropdown float-right">
               <a
-                href="#"
+                href="./"
                 className="dropdown-toggle active"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -162,29 +162,29 @@ class Header extends Component {
               </a>
 
               <div className="user-menu dropdown-menu">
-                { this.state.redirectToSignin == false && 
-                    <a className="nav-link" href="javascript:void(0);">
+                { this.state.redirectToSignin === false && 
+                    <a className="nav-link" href="./">
                     <i className="fa fa-user" />My Profile
                     </a>
                 }
 
                 {  
-                    this.state.redirectToSignin == false ? (
-                        <a className="nav-link" href="javascript:void(0);">
+                    this.state.redirectToSignin === false ? (
+                        <a className="nav-link" href="./">
                         <i className="fa fa-user" />My Profile
                         </a>
                     ):(
-                        <a className="nav-link" href="javascript:void(0);">
+                        <a className="nav-link" href="./">
                         <i className="fa fa-user" />Login
                         </a>
                     )
                 }
-                { /*<a className="nav-link" href="#">
+                { /*<a className="nav-link" href="./">
                   <i className="fa fa-bell-o" />Notifications{" "}
                   <span className="count">13</span>
                 </a>*/}
 
-               { /*<a className="nav-link" href="#">
+               { /*<a className="nav-link" href="./">
                   <i className="fa fa-cog" />Settings
     </a>*/}
 

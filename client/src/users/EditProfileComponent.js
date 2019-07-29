@@ -22,13 +22,13 @@ class EditProfile extends Component {
     }
     const redirectToSignin = this.state.redirectToSignin;
 
-    if (redirectToSignin == true) {
+    if (redirectToSignin === true) {
       return <Redirect to="/login" />;
     }
 
     return (
       <h1>
-        <a href="#" color="inherit" onClick={this.logout}>
+        <a href="./" color="inherit" onClick={this.logout}>
           Sign out
         </a>
         EDIT

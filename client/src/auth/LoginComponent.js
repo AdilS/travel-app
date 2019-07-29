@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {signin} from './client.api.auth.js';
 import auth from './auth-helper';
-import {Redirect, Router} from 'react-router-dom';
-import {withRouter} from 'react-router'
-import { createBrowserHistory } from 'history'
+import {Redirect} from 'react-router-dom';
+//import {withRouter} from 'react-router'
+//import { createBrowserHistory } from 'history'
 class LoginComponent extends Component {
 
     constructor(props) {
@@ -33,7 +33,7 @@ class LoginComponent extends Component {
         const errors = this.state.error;
        // const validEmailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         var flag = true;
-        if (emailVar == '') {
+        if (emailVar === '') {
             errors.emailErr = "Email Required";
             flag = false;
         } 
@@ -46,7 +46,7 @@ class LoginComponent extends Component {
             flag = true;
         }
 
-        if (passwordVar == '') {
+        if (passwordVar === '') {
             errors.passwordErr = "Password Required";
             flag = false;
         } else {
@@ -55,7 +55,7 @@ class LoginComponent extends Component {
         }
         this.setState({ error: errors });
 
-        if (flag == false) {
+        if (flag === false) {
             return false;
         } else {
             const user = {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/cs-skin-elastic.css";
 import "../assets/css/style.css";
-import { create, listcategorybyid,updatecategorybyid} from './clientapi.admin.js';
+import {listcategorybyid,updatecategorybyid} from './clientapi.admin.js';
 import auth from "./../auth/auth-helper";
 import { Redirect } from "react-router-dom";
 import {Link} from 'react-router-dom';
@@ -9,10 +9,7 @@ const styles = {
   float: "center",
   marginRight: "20px"
 };
-const divStyle = {
-  display: "inline-block",
-  margin: "0 auto"
-};
+
 class EditCategory extends Component {
   constructor(props) {
     super(props);
@@ -24,13 +21,13 @@ class EditCategory extends Component {
       redirectToSignin: false,
       dbcategory : ''
     }
-   const catId= this.props.match.params.catId;
+   //const catId= this.props.match.params.catId;
    //this.setState()
    ///alert(catId);
   }
 
   handleInput = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.setState({
       category: value
     });
@@ -46,7 +43,7 @@ class EditCategory extends Component {
     } else {
       this.setState({ error: '' });
     }
-    if (resFlag == false) {
+    if (resFlag === false) {
       return false
     } else {
       const category = {
@@ -83,7 +80,7 @@ class EditCategory extends Component {
     }
     const redirectToSignin = this.state.redirectToSignin;
 
-    if (redirectToSignin == true) {
+    if (redirectToSignin === true) {
       return <Redirect to="/login" />;
     }
     return (
