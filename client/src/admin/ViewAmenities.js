@@ -111,7 +111,7 @@ class ViewAmenities extends Component {
                     
                   </td>
                   <td>
-                  <Link to={"/editamenities/"+value._id}  class="btn btn-info" act>
+                  <Link to={"/editamenity/"+value._id}  class="btn btn-info" act>
                   <i class="fa fa-pencil"/>
                     </Link>
                   </td>

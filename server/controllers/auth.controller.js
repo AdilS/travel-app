@@ -4,10 +4,6 @@ const expressJwt = require('express-jwt');
 const config =require('../../config/config.js');
 
 const signin = (req, res) => {
-  console.log(req.body.email);
-  // return false;
-// alert(req.body.email);
-// alert('dsd');
   User.findOne({
     "email": req.body.email
   }, (err, user) => {

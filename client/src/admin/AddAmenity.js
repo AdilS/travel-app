@@ -67,16 +67,16 @@ class AddAmenity extends Component {
     }
     return (
       <React.Fragment>
-        <div class="breadcrumbs">
-          <div class="breadcrumbs-inner">
-            <div class="row m-0">
+        <div className="breadcrumbs">
+          <div className="breadcrumbs-inner">
+            <div className="row m-0">
 
-              <div class="col-sm-12">
-                <div class="page-header float-right">
-                  <div class="page-title">
-                    <ol class="breadcrumb text-right">
-                      <li class="active"><span style={styles}>
-            <Link to='viewamenities' class="btn btn-primary btn-sm" act>View Amenity</Link>
+              <div className="col-sm-12">
+                <div className="page-header float-right">
+                  <div className="page-title">
+                    <ol className="breadcrumb text-right">
+                      <li className="active"><span style={styles}>
+            <Link to='viewamenities' className="btn btn-primary btn-sm" act>View Amenity</Link>
             </span></li>
                     </ol>
 
@@ -86,44 +86,44 @@ class AddAmenity extends Component {
             </div>
           </div>
         </div>
-        <div class="content">
-          <div class="animated fadeIn">
+        <div className="content">
+          <div className="animated fadeIn">
 
 
-            <div class="row">
-              <div class="col-lg-6" >
-                <div className="card">
+            <div className="row">
+              <div className="col-lg-6" >
+                <div classNameName="card">
                   {this.state.respMsg.length > 0 &&
-                    <span className="alert alert-danger">{this.state.respMsg}</span>}
-                  <div class="card-header"><small> <strong>Add Amenity</strong></small></div>
-                  <div className="card-body card-block">
-                    <form action="#" method="post" className="form-horizontal">
-                      <div className="row form-group">
-                        <div className="col col-md-3">
-                          <label htmlFor="amenity" className=" form-control-label">
+                    <span classNameName="alert alert-danger">{this.state.respMsg}</span>}
+                  <div className="card-header"><small> <strong>Add Amenity</strong></small></div>
+                  <div classNameName="card-body card-block">
+                    <form action="#" method="post" classNameName="form-horizontal">
+                      <div classNameName="row form-group">
+                        <div classNameName="col col-md-3">
+                          <label htmlFor="amenity" classNameName=" form-control-label">
                           Amenity Name
                   </label>
                         </div>
-                        <div className="col-12 col-md-9">
+                        <div classNameName="col-12 col-md-9">
                           <input
                             type="text"
                             id="amenity"
                             name="amenity"
                             placeholder="Enter amenity..."
-                            className="form-control"
+                            classNameName="form-control"
                             onChange={this.handleInput}
                           />
 
                         </div>
                         {this.state.error.length > 0 &&
-                          <span className="alert alert-danger">{this.state.error}</span>}
+                          <span classNameName="alert alert-danger">{this.state.error}</span>}
 
                       </div>
                     </form>
                   </div>
                   <div>
-                    <button type="submit" className="btn btn-primary btn-sm" onClick={this.handleSubmit}>
-                      <i className="fa fa-dot-circle-o" /> Submit
+                    <button type="submit" classNameName="btn btn-primary btn-sm" onClick={this.handleSubmit}>
+                      <i classNameName="fa fa-dot-circle-o" /> Submit
             </button>
                   </div>
                 </div>

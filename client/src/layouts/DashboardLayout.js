@@ -9,10 +9,9 @@ import AddAmenity from "../admin/AddAmenity";
 import EditAmenity from "../admin/EditAmenity";
 import ViewStarRating from "../components/ViewStarRating";
 import UserComponent from "../components/UserComponent";
-import LoginComponent from "../auth/LoginComponent";
-import SignupComponent from "../users/SignupComponent";
 import EditProfileComponent from "../users/EditProfileComponent";
-import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
+import NotFound from "../users/NotFound";
+import { BrowserRouter as Router, Route , Switch, withRouter } from 'react-router-dom';
 //import PrivateRoute from 'react-private-route';
 class DashboardLayout extends React.Component {
   render() {
@@ -25,16 +24,17 @@ class DashboardLayout extends React.Component {
            
               <Switch>
               <Route path='/addcategory' component={AddCategory} />
+              
               <Route path='/viewcategory' render={()=> <ViewCategory />} />
               <Route path='/editcategory/:catId' component={EditCategory} />
-              <Route path='/Viewstarrating' component={ViewStarRating} />
+              <Route exact path='/Viewstarrating' component={withRouter(ViewStarRating)} />
               <Route path='/viewamenities' component={ViewAmenities} />
               <Route path='/addamenities' component={AddAmenity} />
               <Route path='/editamenity/:amenityId' component={EditAmenity} />
               <Route path='/viewuser' component={UserComponent} />
-              <Route path='/login' component={LoginComponent} />
-              <Route path='/signup' component={SignupComponent} />
+              
               <Route path="/user/editprofile" component={EditProfileComponent}/>
+              <Route path="" component={NotFound} />
               </Switch>
             
           </Router>

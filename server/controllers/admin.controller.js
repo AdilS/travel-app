@@ -71,6 +71,16 @@ const checkCategory =  (req, res) => {
       next()
     })
   }
+  const amenityId = (req, res, next, id) => {
+    AmenitiesModel.findById(id).exec((err, amenity) => {
+      if (err || !amenity)
+        return res.status('400').json({
+          error: "cat not found"
+        })
+      req.amenity = amenity
+      next()
+    })
+  }
 
   const updatecategorybyId =(req, res)=>{
     CategoryModel.updateOne({'_id':req.category._id},
@@ -84,6 +94,18 @@ const checkCategory =  (req, res) => {
       return res.json(category)
       //req.body.order.payment_id = customer.id
     //  next()
+    })
+  }
+  const updateamenitybyId =(req, res)=>{
+    AmenitiesModel.updateOne({'_id':req.amenity._id},
+    {'$set': { 'amenityname': req.body.amenityname }},
+    (err, amenity) => {
+      if (err) {
+        return res.status(400).send({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+      return res.json(amenity)
     })
   }
 
@@ -125,4 +147,16 @@ const checkCategory =  (req, res) => {
       return res.json(amenities)
      })
    }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname};
+
+   const getamenitybyId = (req, res) => {
+   //  console.log(JSON.stringify(req))
+    AmenitiesModel.findById( req.amenity._id, (err, amenity) => {
+       if (err) {
+         return res.status(400).json({
+           error: errorHandler.getErrorMessage(err)
+         })
+       }
+      return res.json(amenity)
+     })
+   }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname,getamenitybyId,amenityId,updateamenitybyId};

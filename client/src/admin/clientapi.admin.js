@@ -53,6 +53,21 @@ const updatecategorybyid = (categoryData, params) => {
     console.log(err)
   })
 }
+const updateamenitybyid = (amenityData, params) => {
+  //alert(JSON.stringify(categoryData));
+  return fetch('http://localhost:5000/admin/updateamenitybyid/' + params.amenityId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(amenityData)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
 
 const listamenities = () => {
   return fetch('http://localhost:5000/admin/getamenities', {
@@ -90,6 +105,17 @@ const filterAmenities = (params) => {
     return err.json();
   });
 }
+
+const listamenitiesbyid = (params) => {
+  // alert(params.catId);
+  return fetch('http://localhost:5000/admin/getamenitybyId/' + params.amenityId, {
+    method: 'GET',
+  }).then(response => {
+    //alert(JSON.stringify(response.json()));
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 export {
   checkcategory,
   create,
@@ -98,6 +124,8 @@ export {
   updatecategorybyid,
   listamenities,
   createamenity,
-  filterAmenities
+  filterAmenities,
+  listamenitiesbyid,
+  updateamenitybyid
 
 }

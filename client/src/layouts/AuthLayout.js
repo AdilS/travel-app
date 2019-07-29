@@ -1,8 +1,8 @@
 import React from "react";
 import LoginComponent from "../auth/LoginComponent";
-//import SignupComponent from "../users/SignupComponent";
+import SignupComponent from "../users/SignupComponent";
 import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
-//import PrivateRoute from 'react-private-route';
+import NotFound from "../users/NotFound";
 class AuthLayout extends React.Component {
   render() {
     return (
@@ -10,9 +10,10 @@ class AuthLayout extends React.Component {
 
           <Router>
               <Switch>
-              <Route path='/login' component={LoginComponent} />      
+              <Route path='/login' component={LoginComponent} />    
+              <Route path='/signup' component={SignupComponent} />  
+              <Route path="" component={NotFound} />
               </Switch>
-            
           </Router>
         </div>
     );
