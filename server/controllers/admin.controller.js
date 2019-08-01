@@ -1,5 +1,6 @@
 const CategoryModel = require('../models/category.model');
 const AmenitiesModel = require('../models/amenities.model');
+const HotelModel = require('../models/hotel.model');
 var errorHandler = require('./../helpers/dbErrorHandler');
 
 const checkCategory =  (req, res) => {
@@ -10,7 +11,7 @@ const checkCategory =  (req, res) => {
   CategoryModel.findOne({
       "categoryname": 'WiFi'
     }, (err, category) => {
-  console.log(category);
+  //console.log(category);
       if (err || category)
         return res.status('401').json({
           error: "Invalid req"
@@ -38,6 +39,7 @@ const checkCategory =  (req, res) => {
       })
     })
   }
+ 
  
   const getcategory = (req, res, next) => {
     CategoryModel.find((err, users) => {
@@ -159,4 +161,17 @@ const checkCategory =  (req, res) => {
       return res.json(amenity)
      })
    }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname,getamenitybyId,amenityId,updateamenitybyId};
+   const addhotel = (req, res, next) => {
+    const hotel = new HotelModel(req.body)
+    hotel.save((err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+      res.status(200).json({
+        message: "Added Successfully !"
+      })
+    })
+  }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname,getamenitybyId,amenityId,updateamenitybyId , addhotel};

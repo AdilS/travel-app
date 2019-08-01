@@ -26,10 +26,10 @@ class EditAmenity extends Component {
  }
   handleSubmit = () => {
     const changedData = this.state.amenity;
-    var errFlag=false;
+    //var errFlag=false;
     if(changedData === ''){
         this.setState( {error : 'Amenity is blank'} );
-        errFlag = true;
+       // errFlag = true;
     } else {
         this.setState( {error : ''} );
         const amenity = {

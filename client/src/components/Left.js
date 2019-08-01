@@ -29,6 +29,13 @@ class Left extends Component{
                                    
                                 </ul>
                             </li>
+                            <li className="menu-item-has-children dropdown">
+                                <a href="/" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-table"></i>Hotels</a>
+                                <ul className="sub-menu children dropdown-menu">
+                                    <li><i className="fa fa-table"></i><a href="viewhotel">View Hotel</a></li>
+                                   
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </nav>

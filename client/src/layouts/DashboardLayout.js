@@ -7,6 +7,8 @@ import EditCategory from "../admin/EditCategory";
 import ViewAmenities from "../admin/ViewAmenities";
 import AddAmenity from "../admin/AddAmenity";
 import EditAmenity from "../admin/EditAmenity";
+import AddHotel from "../admin/AddHotel";
+import ViewHotel from "../admin/ViewHotel";
 import ViewStarRating from "../components/ViewStarRating";
 import UserComponent from "../components/UserComponent";
 import EditProfileComponent from "../users/EditProfileComponent";
@@ -32,6 +34,8 @@ class DashboardLayout extends React.Component {
               <Route path='/addamenities' component={AddAmenity} />
               <Route path='/editamenity/:amenityId' component={EditAmenity} />
               <Route path='/viewuser' component={UserComponent} />
+              <Route path='/addhotel' component={AddHotel} />
+              <Route path='/viewhotel' component={ViewHotel} />
               
               <Route path="/user/editprofile" component={EditProfileComponent}/>
               <Route path="" component={NotFound} />
@@ -48,7 +52,7 @@ class DashboardLayout extends React.Component {
                     Copyright &copy; 2019 Adil Saleem
                 </div>
                 <div className="col-sm-6 text-right">
-                    Designed by <a href="https://colorlib.com">Adil</a>
+                    Designed by <a href="/">Adil</a>
                 </div>
             </div>
         </div>

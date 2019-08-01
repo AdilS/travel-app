@@ -115,6 +115,19 @@ const listamenitiesbyid = (params) => {
     return response.json()
   }).catch((err) => console.log(err))
 }
+const createHotel = (hotelData) => {
+  return fetch('http://localhost:5000/admin/addhotel', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(hotelData)
+  })
+    .then((response) => {
+      return response.json()
+    }).catch((err) => console.log(err))
+}
 
 export {
   checkcategory,
@@ -126,6 +139,7 @@ export {
   createamenity,
   filterAmenities,
   listamenitiesbyid,
-  updateamenitybyid
+  updateamenitybyid,
+  createHotel
 
 }
