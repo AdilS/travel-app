@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {signin} from './client.api.auth.js';
 import auth from './auth-helper';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 //import {withRouter} from 'react-router'
 //import { createBrowserHistory } from 'history'
 class LoginComponent extends Component {
@@ -129,6 +129,9 @@ class LoginComponent extends Component {
                     <button type="submit" className="btn btn-primary btn-sm">
                         <i className="fa fa-dot-circle-o" /> Submit
                     </button>
+                    <br />
+                    <br />
+                    <Link to='/forgetpassword'>Forget Password</Link>
                 </div>
 
             </form>
