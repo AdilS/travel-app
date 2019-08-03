@@ -122,6 +122,7 @@ const checkCategory =  (req, res) => {
   });
   }
 
+
   const addamenity = (req, res, next) => { 
      console.log(req.body.name);
     // return false;
@@ -174,4 +175,38 @@ const checkCategory =  (req, res) => {
       })
     })
   }
-module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname,getamenitybyId,amenityId,updateamenitybyId , addhotel};
+  const gethotel = (req, res, next) => {
+    HotelModel.find().populate('amenity_id','amenityname').populate('category_id','categoryname').exec((err,hotels)=>{
+      if(err){
+        return res.status(400).json({
+          err
+      })
+      }else{
+        res.json(hotels);
+      }
+    });
+  }
+
+  const filterhotels =(req, res, next) =>{
+    const filterObj={};
+    if(req.body.searchParam!=''){
+      filterObj.hotelname =  new RegExp(req.body.searchParam, 'i');
+    }
+    if(req.body.amenity!=''){
+      filterObj.amenity_id =  req.body.amenity;
+    }
+    if(req.body.category!=''){
+      filterObj.category_id =  req.body.category;
+    }
+
+    HotelModel.find(filterObj).populate('amenity_id','amenityname').populate('category_id','categoryname').exec((err,hotels)=>{
+      if(err){
+        return res.status(400).json({
+          err
+      })
+      }else{
+        res.json(hotels);
+      }
+    });
+  }
+module.exports = {checkCategory,create,getcategory,getcategorybyId,catById,updatecategorybyId,getamenities,addamenity,getamenitiesbyname,getamenitybyId,amenityId,updateamenitybyId , addhotel,gethotel,filterhotels};

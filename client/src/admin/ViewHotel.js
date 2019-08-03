@@ -2,62 +2,106 @@ import React, { Component } from "react";
 import "../assets/css/cs-skin-elastic.css";
 import "../assets/css/style.css";
 import { Link } from "react-router-dom";
-import { listamenities , filterAmenities} from './clientapi.admin.js';
+import { listhotel , filterHotels, listcategory, listamenities} from './clientapi.admin.js';
 import auth from "./../auth/auth-helper";
 import {Redirect} from 'react-router-dom'
-
+import dateFormat from 'dateformat';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const styles = {
   float: "right",
   marginRight: "20px"
 };
-class ViewAmenities extends Component {
+class ViewHotel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amenities: [],
+      hotels: [],
       searchParam : '',
+      amenity :'',
+      category: '',
       inputError: '',
-      /*success: "",
-      respMsg: '',*/
+      startDate: new Date(),
+      allcategory: [],
+      allamenities: [],
       redirectToSignin: false
     }
   }
 
-  loadAmenities = () => {
-    listamenities().then((data) => {
+  loadHotels = () => {
+    this.setState({
+      searchParam: "",
+      amenity: "",
+      category: ""
+    });
+    listhotel().then((data) => {
       if (data.error) {
         console.log(data.error)
       } else { 
-        this.setState({amenities: data})
+        this.setState({hotels: data})
       }
     })
   }
   componentDidMount = () => {
-    this.loadAmenities()
+    this.loadHotels()
+    this.loadCategory();
+    this.loadAmenities();
   }
-  handleInput = (event)=>{
-    const {  value } = event.target;
-    this.setState({
-      searchParam: value
+  loadCategory = () => {
+    listcategory().then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({ allcategory: data });
+      }
     });
-  }
+  };
+  loadAmenities = () => {
+    listamenities().then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({ allamenities: data });
+      }
+    });
+  };
   handleSearch = () =>{
     const searchParam = this.state.searchParam;
+    const amenity = this.state.amenity;
+    const category = this.state.category;
+    //alert(amenity + '==' +category );
     var errFlag=false;
-    if(searchParam===''){
+    if(searchParam==='' && amenity==='' && category===''){
       this.setState ({inputError : 'Search field in blank'});
-      errFlag = true;
+      return  true;
     } else if(errFlag===false) {
-      filterAmenities({'searchParam' : searchParam}).then(data => {
+      this.setState ({inputError : ''});
+      const filterObj= {
+        searchParam : searchParam,
+        amenity : amenity,
+        category : category
+      }
+      filterHotels(filterObj).then(data => {
         if (data.error) {
           this.setState({ 'respMsg': JSON.stringify(data.error) });
         } else {
-          this.setState({amenities: data});
+          this.setState({hotels: data});
         }
       })
     }
 
+  }
+
+  handleChange = (event) =>{
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+   // this.handleSearch();
+  }
+  handleStatus(status){
+    alert(status);
   }
   render() {
     const jwt = auth.isAuthenticated();
@@ -75,10 +119,39 @@ class ViewAmenities extends Component {
           
           <div className="table-stats order-table ov-h">
          
-          <input type="text" id="text-input" name="text-input" placeholder="Search Amenities" className="form-control" onChange={this.handleInput} />
-         
+          <input type="text" value={this.state.searchParam} id="text-input" name="searchParam" placeholder="Search Hotels" className="form-control" onChange={this.handleChange} />
+          <select
+                    data-placeholder="Choose a Country..."
+                    class="standardSelect"
+                    tabindex="1"
+                    onChange={this.handleChange}
+                    name="amenity"
+                  >
+                    <option value=""> -Select Amenity-</option>
+                    {this.state.allamenities.map((value, index) => (
+                      <option value={value._id}> {value.amenityname}</option>
+                    ))}
+                  </select>
+                  <select
+                    
+                    data-placeholder="Choose a Category..."
+                    class="standardSelect"
+                    tabindex="1"
+                    name="category"
+                    onChange={this.handleChange}
+                  >
+                  <option value=""> -Select Category-</option>
+                    {this.state.allcategory.map((value, index) => (
+                      <option value={value._id} label="default">
+                        {value.categoryname}
+                      </option>
+                    ))}
+                  </select>
                     <button type="submit" className="btn btn-primary btn-sm"  onClick={this.handleSearch}>
                       <i className="fa fa-dot-circle-o" /> Search
+            </button>
+            &nbsp;&nbsp;<button type="submit" className="btn btn-primary btn-sm"  onClick={this.loadHotels}>
+                      <i className="fa fa-dot-circle-o" /> Reset
             </button>
           {this.state.inputError.length>0 && <span className="alert alert-danger">{this.state.inputError}</span>}
             <span style={styles}>
@@ -91,31 +164,51 @@ class ViewAmenities extends Component {
                 <tr>
                   <th className="serial">#</th>
                   <th>Name</th>
+                  <th>Category Name</th>
+                  <th>Amenity</th>
+                  <th>Offer</th>
+                  <th>Description</th>
+                  <th>Other Features</th>
+                  <th>Created Date</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-              {this.state.amenities.map((value,index) =>
-
               
+              {this.state.hotels.map( (value, index) =>
                 <tr>
-                  <td className="serial">{index+1}.</td>
+                  <td className="serial">{index+1}</td>
                   <td>
-                    <span className="name">{value.amenityname}</span>
+                    <span className="name">{value.hotelname}</span>
+                  </td>
+                  <td>
+                    <span className="name">{value.category_id.categoryname}</span>
+                  </td>
+                  <td>
+                    <span className="name">{value.amenity_id.amenityname}</span>
+                  </td>
+                  <td>
+                    <span className="name">{value.is_offer}</span>
+                  </td>
+                  <td>
+                    <span className="name">{value.description}</span>
+                  </td>
+                  <td>
+                    <span className="name">{value.extrafeature}</span>
+                  </td>
+                  <td>
+                    <span className="name">{dateFormat(value.created, "dd-mm-yyyy")}</span>
                   </td>
                   
                   <td>
-                  {value.status === 1 && 'Active'}
-                  {value.status === 0 && 'In Active'}
+                    <a href='#' onClick={this.handleStatus(value.status)}>
                     
+                  {value.status==1 && <span> Active</span>}
+                  {value.status==0 && <span> In Active</span>}
+                       </a>    
                   </td>
-                  <td>
-                  <Link to={"/editamenity/"+value._id}  class="btn btn-info" act>
-                  <i class="fa fa-pencil"/>
-                    </Link>
-                  </td>
-  </tr>)}
+                </tr>
+              )}
               </tbody>
             </table>
           </div>
@@ -124,4 +217,4 @@ class ViewAmenities extends Component {
     );
   }
 }
-export default ViewAmenities;
+export default ViewHotel;

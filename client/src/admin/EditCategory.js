@@ -106,8 +106,6 @@ class EditCategory extends Component {
         </div>
         <div class="content">
           <div class="animated fadeIn">
-
-
             <div class="row">
               <div class="col-lg-6" >
                 <div className="card">

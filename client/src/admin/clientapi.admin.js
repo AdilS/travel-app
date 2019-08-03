@@ -77,6 +77,14 @@ const listamenities = () => {
     return response.json()
   }).catch((err) => console.log(err))
 }
+const listhotel = () => {
+  return fetch('http://localhost:5000/admin/gethotel', {
+    method: 'GET',
+  }).then(response => {
+    // alert(JSON.stringify(response.json()));
+    return response.json()
+  }).catch((err) => console.log(err))
+}
 
 const createamenity = (amenity) => {
   return fetch('http://localhost:5000/admin/addamenity', {
@@ -106,6 +114,7 @@ const filterAmenities = (params) => {
   });
 }
 
+
 const listamenitiesbyid = (params) => {
   // alert(params.catId);
   return fetch('http://localhost:5000/admin/getamenitybyId/' + params.amenityId, {
@@ -128,7 +137,20 @@ const createHotel = (hotelData) => {
       return response.json()
     }).catch((err) => console.log(err))
 }
-
+const filterHotels = (params) => { 
+  return fetch('http://localhost:5000/admin/filterhotels', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  }).then((response) => {
+    return response.json();
+  }).catch((err) => {
+    return err.json();
+  });
+}
 export {
   checkcategory,
   create,
@@ -140,6 +162,8 @@ export {
   filterAmenities,
   listamenitiesbyid,
   updateamenitybyid,
-  createHotel
+  createHotel,
+  listhotel,
+  filterHotels
 
 }

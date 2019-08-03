@@ -28,7 +28,7 @@ class Header extends Component {
       <header id="header" className="header">
         <div className="top-left">
           <div className="navbar-header">
-            <a className="navbar-brand" href="./">
+            <a className="navbar-brand" href="/">
               <img src={logo} alt="Logo" />
             </a>
             <a className="navbar-brand hidden" href="./">
