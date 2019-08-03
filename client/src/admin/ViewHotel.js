@@ -201,7 +201,8 @@ class ViewHotel extends Component {
                   </td>
                   
                   <td>
-                    <a href='#' onClick={this.handleStatus(value.status)}>
+                    <a href='#' onClick={//this.handleStatus(value.status)
+                    }>
                     
                   {value.status==1 && <span> Active</span>}
                   {value.status==0 && <span> In Active</span>}
